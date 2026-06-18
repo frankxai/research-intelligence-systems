@@ -1,0 +1,11 @@
+{
+  "title": "Paper Schema",
+  "type": "object",
+  "properties": {
+    "title": {"type": "string"},
+    "doi": {"type": "string"},
+    "abstract": {"type": "string"},
+    "claims": {"type": "array"},
+    "evidence_strength": {"type": "number"}
+  }
+}
