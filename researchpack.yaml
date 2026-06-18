@@ -1,0 +1,27 @@
+version: "0.1.0"
+name: "research-intelligence-systems"
+type: "research-portfolio"
+description: "Portfolio layer for agentic scientific workflows"
+
+packs:
+  - neuroscience
+  - psychology
+  - learning-science
+  - cognitive-science
+  - behavioral-science
+  - consciousness-studies
+
+workflows:
+  - literature-review
+  - evidence-table
+  - claim-graph
+  - reproducibility-review
+
+schemas:
+  - paper.schema.json
+  - claim.schema.json
+  - evidence-table.schema.json
+
+depends_on:
+  - research-intelligence-os
+  - mind-intelligence-systems
