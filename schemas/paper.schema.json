@@ -1,11 +1,266 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Paper Schema",
+  "description": "A comprehensive record for a scientific research paper, capturing metadata, methodology, statistical results, and open science compliance for research intelligence systems.",
   "type": "object",
+  "required": ["title", "doi"],
   "properties": {
-    "title": {"type": "string"},
-    "doi": {"type": "string"},
-    "abstract": {"type": "string"},
-    "claims": {"type": "array"},
-    "evidence_strength": {"type": "number"}
-  }
+    "title": {
+      "type": "string",
+      "description": "Full title of the paper"
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier",
+      "pattern": "^10\\..+"
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Full abstract text"
+    },
+    "arxiv_id": {
+      "type": "string",
+      "description": "arXiv identifier (e.g. 2301.12345)"
+    },
+    "pmid": {
+      "type": "string",
+      "description": "PubMed ID"
+    },
+    "pmcid": {
+      "type": "string",
+      "description": "PubMed Central ID (e.g. PMC1234567)"
+    },
+    "semantic_scholar_id": {
+      "type": "string",
+      "description": "Semantic Scholar paper ID"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical URL of the paper"
+    },
+    "authors": {
+      "type": "array",
+      "description": "Ordered list of authors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "orcid": { "type": "string", "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$" },
+          "affiliation": { "type": "string" },
+          "corresponding_author": { "type": "boolean", "default": false }
+        },
+        "required": ["name"]
+      }
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2035,
+      "description": "Publication year"
+    },
+    "journal": {
+      "type": "string",
+      "description": "Journal or conference name"
+    },
+    "volume": { "type": "string" },
+    "issue": { "type": "string" },
+    "pages": { "type": "string" },
+    "preprint_server": {
+      "type": "string",
+      "enum": ["bioRxiv", "arXiv", "PsyArXiv", "medRxiv", "OSF Preprints", "SSRN", "EdArXiv", "other"],
+      "description": "Preprint server if applicable"
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Author-provided or indexed keywords"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["neuroscience", "psychology", "cognitive-science", "learning-science", "behavioral-science", "consciousness-studies", "interdisciplinary"],
+      "description": "Primary research domain pack"
+    },
+    "sub_domain": {
+      "type": "string",
+      "description": "Sub-discipline within the domain (e.g. cognitive neuroscience, social psychology)"
+    },
+    "study_type": {
+      "type": "string",
+      "enum": ["empirical", "review", "meta-analysis", "theoretical", "computational", "clinical-trial", "case-study", "methods", "replication", "registered-report", "adversarial-collaboration"],
+      "description": "Type of research contribution"
+    },
+    "paradigm": {
+      "type": "string",
+      "description": "Experimental paradigm or task name (e.g. Stroop, N-back, binocular rivalry)"
+    },
+    "sample_size": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of participants or observations"
+    },
+    "sample_description": {
+      "type": "string",
+      "description": "Free-text description of sample (age range, inclusion criteria, clinical group)"
+    },
+    "species": {
+      "type": "string",
+      "enum": ["human", "non-human-primate", "rodent", "other-animal", "in-vitro", "computational", "mixed"],
+      "default": "human"
+    },
+    "design_type": {
+      "type": "string",
+      "enum": ["within-subjects", "between-subjects", "mixed", "longitudinal", "cross-sectional", "case-control", "cohort", "RCT", "quasi-experimental", "observational", "single-case"],
+      "description": "Research design"
+    },
+    "imaging_modality": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["fMRI", "EEG", "MEG", "tDCS", "TMS", "TMS-EEG", "fNIRS", "structural-MRI", "dMRI", "PET", "eye-tracking", "calcium-imaging", "2P-microscopy", "ephys-single-unit", "ephys-LFP", "ephys-multi-unit", "SEEG", "ECoG", "other"]
+      },
+      "description": "Neuroimaging or recording modalities used"
+    },
+    "preprocessing_pipeline": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Software pipelines used for preprocessing (e.g. fMRIPrep 23.1, EEGLAB 2023.0)"
+    },
+    "software_versions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Key software and version strings (e.g. {R: '4.3.1', lme4: '1.1-34'})"
+    },
+    "primary_statistic": {
+      "type": "string",
+      "description": "Main inferential statistic reported (e.g. F(2,87)=4.32, t(45)=3.1, χ²(3)=8.7)"
+    },
+    "effect_size": {
+      "type": "number",
+      "description": "Primary effect size value"
+    },
+    "effect_size_type": {
+      "type": "string",
+      "enum": ["Cohen's d", "Hedge's g", "r", "r2", "eta-squared", "partial-eta-squared", "omega-squared", "Cohen's f", "odds-ratio", "relative-risk", "NNT", "phi", "Cramer's V", "AUC", "other"],
+      "description": "Type of effect size metric"
+    },
+    "confidence_interval_95": {
+      "type": "object",
+      "properties": {
+        "lower": { "type": "number" },
+        "upper": { "type": "number" }
+      },
+      "required": ["lower", "upper"],
+      "description": "95% confidence interval for the primary effect size"
+    },
+    "p_value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Primary p-value (exact, not thresholded)"
+    },
+    "bayes_factor": {
+      "type": "number",
+      "description": "Bayes Factor (BF10) for primary hypothesis; >1 = evidence for H1, <1 = evidence for H0"
+    },
+    "multiple_comparisons_correction": {
+      "type": "string",
+      "description": "Method used for multiple comparisons (e.g. FDR, FWE, TFCE, Bonferroni, none)"
+    },
+    "preregistered": {
+      "type": "boolean",
+      "description": "Whether the study was preregistered before data collection"
+    },
+    "preregistration_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the preregistration (OSF, AsPredicted, ClinicalTrials.gov, etc.)"
+    },
+    "registered_report": {
+      "type": "boolean",
+      "description": "Whether the paper went through the Registered Reports track (Stage 1 IPA obtained)"
+    },
+    "open_data": {
+      "type": "boolean",
+      "description": "Whether raw or processed data is publicly available"
+    },
+    "open_data_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the data repository (OSF, OpenNeuro, DANDI, Zenodo, Dryad, etc.)"
+    },
+    "open_code": {
+      "type": "boolean",
+      "description": "Whether analysis code is publicly available"
+    },
+    "open_code_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to code repository (GitHub, OSF, etc.)"
+    },
+    "open_materials": {
+      "type": "boolean",
+      "description": "Whether experimental materials (stimuli, instruments) are publicly available"
+    },
+    "open_materials_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "data_standard": {
+      "type": "string",
+      "enum": ["BIDS", "NWB", "xAPI", "OMOP", "CDISC", "none", "other"],
+      "description": "Data sharing standard used for the dataset"
+    },
+    "claims": {
+      "type": "array",
+      "description": "Key empirical claims extracted from the paper",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_text": { "type": "string" },
+          "evidence_strength": { "type": "number", "minimum": 0, "maximum": 1 },
+          "direction": {
+            "type": "string",
+            "enum": ["positive", "negative", "null", "mixed", "conditional"]
+          }
+        },
+        "required": ["claim_text"]
+      }
+    },
+    "evidence_strength": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Overall evidence strength score (0 = very weak/methodological issues, 0.5 = moderate, 1 = strong/replicated/preregistered)"
+    },
+    "replication_status": {
+      "type": "string",
+      "enum": ["original", "direct-replication", "conceptual-replication", "failed-replication", "adversarial-collaboration", "unknown"],
+      "description": "Role of this paper in the replication ecosystem"
+    },
+    "risk_of_bias": {
+      "type": "string",
+      "enum": ["low", "some-concerns", "high", "not-assessed"],
+      "description": "Overall risk of bias judgment"
+    },
+    "rob_tool": {
+      "type": "string",
+      "enum": ["Cochrane-RoB2", "ROBINS-I", "Newcastle-Ottawa", "QUADAS-2", "GRADE", "JBI", "other"],
+      "description": "Tool used for risk of bias assessment"
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this record was ingested into the system"
+    },
+    "ingested_by": {
+      "type": "string",
+      "description": "Agent or user who ingested this record"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes for additional context"
+    }
+  },
+  "additionalProperties": false
 }

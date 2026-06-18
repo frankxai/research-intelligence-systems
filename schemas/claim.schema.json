@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claim Schema",
+  "description": "A structured record for a scientific empirical claim extracted from research literature, with evidence metadata, replication status, and relationship graph.",
+  "type": "object",
+  "required": ["claim_id", "claim_text", "source_paper_doi"],
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "description": "Unique identifier for this claim (e.g. claim-2024-0001)"
+    },
+    "claim_text": {
+      "type": "string",
+      "description": "Precise, falsifiable empirical claim statement"
+    },
+    "source_paper_doi": {
+      "type": "string",
+      "pattern": "^10\\..+",
+      "description": "DOI of the primary paper from which this claim was extracted"
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": ["empirical-finding", "theoretical-proposition", "methodological", "replication", "null-result", "boundary-condition", "meta-analytic"],
+      "description": "Type of scientific claim"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["neuroscience", "psychology", "cognitive-science", "learning-science", "behavioral-science", "consciousness-studies", "interdisciplinary"]
+    },
+    "constructs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Cognitive, psychological, or neural constructs involved (map to Cognitive Atlas or domain ontology)"
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["positive-association", "negative-association", "null", "bidirectional", "conditional", "curvilinear"],
+      "description": "Direction of the claimed relationship"
+    },
+    "effect_size": {
+      "type": "number",
+      "description": "Effect size for this claim"
+    },
+    "effect_size_type": {
+      "type": "string",
+      "enum": ["Cohen's d", "Hedge's g", "r", "r2", "eta-squared", "partial-eta-squared", "omega-squared", "odds-ratio", "relative-risk", "NNT", "other"]
+    },
+    "sample_size": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "N for the primary study supporting this claim"
+    },
+    "confidence_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.95,
+      "description": "Confidence level for the effect size CI"
+    },
+    "ci_lower": { "type": "number" },
+    "ci_upper": { "type": "number" },
+    "p_value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "bayes_factor": {
+      "type": "number",
+      "description": "BF10 for Bayesian evidence evaluation"
+    },
+    "replication_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of independent replication attempts"
+    },
+    "replication_success_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Proportion of replication attempts that succeeded (0–1)"
+    },
+    "population": {
+      "type": "string",
+      "description": "Target population for this claim (e.g. healthy adults 18-35, children, clinical MDD)"
+    },
+    "conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Experimental conditions or contexts under which this claim holds"
+    },
+    "moderators": {
+      "type": "array",
+      "description": "Known moderators of this effect",
+      "items": {
+        "type": "object",
+        "properties": {
+          "variable": { "type": "string" },
+          "direction": { "type": "string", "enum": ["amplifies", "attenuates", "reverses", "eliminates"] },
+          "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["variable"]
+      }
+    },
+    "boundary_conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Known limits on when this claim does not hold"
+    },
+    "consensus_level": {
+      "type": "string",
+      "enum": ["established", "emerging", "contested", "refuted", "speculative", "unknown"],
+      "description": "Field consensus on this claim based on replication and expert agreement"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this claim record was last reviewed or updated"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-text tags for filtering and search"
+    },
+    "notes": { "type": "string" },
+    "supports_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "claim_ids that this claim provides evidence for"
+    },
+    "contradicts_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "claim_ids that this claim contradicts"
+    },
+    "refines_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "claim_ids that this claim narrows or adds a boundary condition to"
+    },
+    "source_papers": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^10\\..+" },
+      "description": "All paper DOIs contributing evidence to this claim"
+    }
+  },
+  "additionalProperties": false
+}
