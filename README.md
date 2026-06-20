@@ -2,38 +2,84 @@
 
 **The portfolio layer for agentic scientific workflows across literature review, evidence synthesis, claim graphs, research design, reproducibility, and open science.**
 
-## Purpose
-Provide reusable, high-quality packs, workflows, and schemas for research intelligence that integrate with personal OS and domain systems (psychology, neuroscience). Emphasizes rigor: preregistration, Registered Reports, source-grounded claims, separation of observation/interpretation/hypothesis.
+Research Intelligence Systems provides reusable packs, agents, skills, and workflows that turn raw literature and data into structured, reproducible knowledge — grounded in the human mind model and interoperable with personal second brains.
 
-## How People Experience It
-Researchers start with a question, use literature-scout agents to build evidence tables, map claims, design studies with reproducibility in mind, then execute via domain packs.
+## How It Works (Deep Architecture)
 
-**Typical Flow**:
-1. Define question in personal canon (from Agentic Mind OS).
-2. Run literature-to-evidence-table workflow.
-3. Use claim-graph tools.
-4. Preregister (templates provided).
-5. Execute in psychology or neuroscience pack.
-6. Review reproducibility.
+The system is organized into domain packs that map directly to cognitive modules:
 
-UX is structured yet flexible — Markdown + JSON for humans and agents.
+- **packs/neuroscience/** — BIDS/NWB/MNE pipelines, dataset scouting, reproducibility (wired to Learning + Behavior).
+- **packs/psychology/** — Construct mapping, psychometrics, qualitative analysis (Emotion + Belief).
+- **packs/learning-science/**, **cognitive-science/**, **behavioral-science/**, **consciousness-studies/** — Cross-cutting evidence synthesis.
 
-## How Agents Explore It
-- researchpack.yaml manifest
-- packs/ (neuroscience, psychology, learning-science, cognitive-science, behavioral-science, consciousness-studies)
-- workflows/ (literature-review.md, evidence-table.md, claim-graph.md, reproducibility-review.md, preregistration.md)
-- schemas/ (paper.schema.json, claim.schema.json, evidence-table.schema.json)
-- Integrates with Research Intelligence OS runtime and human-mind models.
+**Core Workflows**:
+1. Literature ingestion → structured paper.schema.json.
+2. Evidence table generation → claim.schema.json.
+3. Claim graph construction → reproducibility review.
+4. Agent-assisted design of experiments with preregistration templates.
 
-**Example Prompt**:
-"As literature-scout + methods-critic, using human-mind models for belief and decision-making, synthesize recent papers on [topic]. Build evidence-table.schema.json. Flag reproducibility risks per latest best practices. Reference preregistration.md."
+**Agent Interaction Example**:
+"Using the Learning and Metacognition modules, scout recent papers on [topic] with public OpenNeuro data. Build a claim graph using latest BIDS 1.10 / NWB 2.7 standards. Output evidence table and flag reproducibility gaps."
 
-## Usefulness
-- **Humans**: Accelerates rigorous research while reducing common pitfalls. Supports open science and career advancement via prereg/Registered Reports.
-- **Agents**: Clear contracts and schemas enable reliable multi-step research agents.
-- **Integrations**: Personal canon → research packs → domain execution (psych/neuro) → back to canon.
-- **Latest Best Tech**: BIDS 1.10, NWB 2.7, MNE-Python 1.8+, preregistration/Registered Reports, ReAct agents with structured outputs, modern psychometrics (pingouin), reproducibility tooling.
+All outputs follow strict schemas and evaluation contracts from Research Intelligence OS.
 
-See researchpack.yaml, EXPERIENCE.md, AGENTS.md, workflows/, schemas/, and packs/.
+## Competitor Comparison
 
-This is the connective tissue of the research swarm.
+| Aspect                    | Research Intelligence Systems                  | Elicit                          | Scite                           | Semantic Scholar + AI          | Zotero + AI plugins            |
+|---------------------------|------------------------------------------------|---------------------------------|---------------------------------|--------------------------------|--------------------------------|
+| **Structured Outputs**   | JSON schemas + claim graphs + evidence tables | Summaries + tables             | Smart citations                | Basic AI summaries             | Manual                         |
+| **Reproducibility**      | Native prereg, BIDS/NWB, evaluation contracts | Limited                        | Limited                        | None                           | None                           |
+| **Human Mind Grounding** | Explicit mapping to 12 cognitive modules      | None                           | None                           | None                           | None                           |
+| **Agent/Skill Packs**    | First-class modular agents + SKILL.md         | No standard                    | No standard                    | No standard                    | Community plugins              |
+| **Community & Packs**    | Shared research packs, cohorts, contribution  | Closed ecosystem               | Closed                         | Open but generic               | Strong but fragmented          |
+| **Personal + Research Bridge** | Native integration with Agentic Mind OS    | None                           | None                           | None                           | Manual                         |
+
+Research Intelligence Systems excels in structured, reproducible, cognitively-grounded research infrastructure.
+
+## Research Agent Packs, Skill Packs & Community Workflows
+
+**Agent Packs**:
+- `agents/literature-scout.agent.md`
+- `agents/claim-graph-builder.agent.md`
+- `agents/reproducibility-engineer.agent.md`
+- Domain-specific (neuro-literature-scout, construct-mapper, etc.)
+
+**Skill Packs**:
+- `skills/paper-ingestion/SKILL.md`
+- `skills/evidence-table-builder/SKILL.md`
+- `skills/systematic-review-matrix/SKILL.md`
+- `skills/bids-validator/SKILL.md`
+- `skills/mne-eeg-pipeline/SKILL.md`
+
+**Community Research Workflows**:
+- `workflows/literature-review.md`
+- `workflows/evidence-table.md`
+- `workflows/claim-graph.md`
+- `workflows/reproducibility-review.md`
+
+**Community**:
+- Anyone can contribute new packs or skills via PRs.
+- Shared packs enable cohort-based research (Starlight Pro).
+- Integration with Awesome Mind Agent Skills for discovery.
+- Use in personal canon building via Agentic Mind OS.
+
+## Schemas & Extensibility
+
+- `schemas/paper.schema.json`
+- `schemas/claim.schema.json`
+- `schemas/evidence-table.schema.json`
+- `researchpack.yaml`
+
+Fully extensible for any research domain.
+
+## Usefulness for Community & Research
+
+- **Researchers**: Accelerates rigorous, reproducible work with built-in standards.
+- **Community**: Shared packs create collective intelligence. Contribute, fork, or join cohorts.
+- **Bridge to Personal**: Research outputs feed directly into personal canon and learning.
+
+See `researchpack.yaml`, `AGENTS.md`, `HERMES.md`, and the world-class interactive experience.
+
+**Launch the Experience**: https://github.com/frankxai/mind-intelligence-systems/blob/main/experiences/world-class-brain-experience.html
+
+All repos on main with this depth.
