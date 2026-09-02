@@ -3,6 +3,10 @@
 **The portfolio layer for agentic scientific workflows across literature review, evidence synthesis, claim graphs, research design, reproducibility, and open science.**
 
 Research Intelligence Systems provides reusable packs, agents, skills, and workflows that turn raw literature and data into structured, reproducible knowledge — grounded in the human mind model and interoperable with personal second brains.
+## Repository boundary
+
+This repository owns scientific and domain research packs, not canonical source archives. Its consciousness-studies pack studies consciousness through research workflows; it does not own historical sacred texts, their editions or translations, Sacred Visions, or fictional Arcanea canon. Domain packs consume sources by reference and preserve provenance.
+
 
 ## How It Works (Deep Architecture)
 
