@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "authority-continuity-v0.1",
+  "status": "PROPOSED_NOT_PREREGISTERED",
+  "owner": "Frank Riemer",
+  "question": "How do persistent memory, delegation and recovery affect preservation of human-authorized agent effects?",
+  "hypothesis": "Execution-time intent binding and recovery reconciliation may reduce unauthorized effects while retaining useful authorized completion beyond ordinary scoped access.",
+  "method_owner": "frankxai/research-intelligence-os",
+  "evaluation_owner": "frankxai/Starlight-Intelligence-System",
+  "source_pr": "https://github.com/frankxai/Starlight-Intelligence-System/pull/520",
+  "current_evidence": {
+    "kind": "synthetic-contract-replay",
+    "fixture_pairs": 7,
+    "cases": 14,
+    "configurations": 3,
+    "unit_checks_passed": 17,
+    "real_model_runs": 0,
+    "independent_replication": false,
+    "production_enforcement": false
+  },
+  "conditions": [
+    "strong prompt policy",
+    "ordinary scoped authorization including expiry and revocation",
+    "scoped authorization plus intent binding and recovery reconciliation"
+  ],
+  "metrics": [
+    "executed unauthorized effects",
+    "benign task completion",
+    "attempted violations",
+    "unnecessary denial/escalation",
+    "recovery correctness",
+    "actual cost per authorized completion",
+    "latency",
+    "human intervention"
+  ],
+  "candidate_final_matrix": {
+    "held_out_pairs": 30,
+    "task_instances": 60,
+    "provider_count": 3,
+    "configuration_count": 3,
+    "repeats": 3,
+    "total_runs": 1620,
+    "admitted": false
+  },
+  "resource_request": {
+    "pilot_measured_usage": null,
+    "token_estimate": null,
+    "cash_budget_approved": null,
+    "credits_awarded": null
+  },
+  "validity_limits": [
+    "Current actions are authored fixture traces, not LLM decisions.",
+    "No statistical or model-security claim follows from fixture replay.",
+    "The in-memory ledger does not test distributed races or actual external effect atomicity.",
+    "Novelty comparison and independent review remain pending."
+  ],
+  "stop_rules": [
+    "Stop on testbed escape.",
+    "Version an invalid scorer before interpreting results.",
+    "Do not dispatch paid experiments before resources and usage terms are resolved.",
+    "Publish unfavorable and null results.",
+    "Contribute upstream when prior work already covers the question."
+  ],
+  "release_gates": [
+    "prior-work comparison",
+    "actual model adapter",
+    "frozen held-out dataset and protocol",
+    "native model/run/cost evidence",
+    "independent reproduction",
+    "reviewed integration",
+    "product workflow acceptance"
+  ],
+  "sources": [
+    {
+      "url": "https://agentdojo.spylab.ai/",
+      "inspection": "official documentation",
+      "role": "existing evaluation framework"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.18813",
+      "inspection": "abstract",
+      "role": "capability and control/data-flow defense prior work"
+    },
+    {
+      "url": "https://inspect.aisi.org.uk/",
+      "inspection": "official documentation",
+      "role": "reusable evaluation framework"
+    }
+  ]
+}
