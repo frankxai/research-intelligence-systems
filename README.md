@@ -87,3 +87,7 @@ See `researchpack.yaml`, `AGENTS.md`, `HERMES.md`, and the world-class interacti
 **Launch the Experience**: https://github.com/frankxai/mind-intelligence-systems/blob/main/experiences/world-class-brain-experience.html
 
 All repos on main with this depth.
+
+## Applied AI safety study
+
+The [AI safety pack](packs/ai-safety/README.md) connects a proposed authority-continuity study to reusable research methods and the SIS Proving Ground. Its current prototype is an offline synthetic contract replay. Model evaluation, novelty, independent reproduction and production enforcement remain unverified.
